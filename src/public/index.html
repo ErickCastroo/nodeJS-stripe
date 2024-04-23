@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SportShop</title>
+</head>
+<body>
+  <button id="pagar">pagar</button>
+</body>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const button = document.getElementById('pagar');
+  button.addEventListener('click', async () => {
+    try {
+      const res = await fetch('http://localhost:3000/crear-sesion-de-pago', {
+        method: 'POST'
+      });
+      const data = await res.json();
+      window.location.href = data.url;
+      
+    } catch (error) {
+      console.error('Error al realizar la solicitud:', error);
+    }
+  });
+});
+
+</script>
+</html> 
